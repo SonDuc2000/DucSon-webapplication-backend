@@ -1,0 +1,199 @@
+body{
+	background: #EDEDED;
+}
+
+a{
+	text-decoration: none;
+	color: black;
+}
+
+li{
+	list-style: none;
+}
+
+.numberCard{
+	position: absolute;
+	top: 10%;
+	border: 2px solid #E9980C;
+	border-radius: 50%;
+	line-height: 14px;
+	right: 200px;
+	text-align: center;
+	padding: 1px;
+	background: #E9980C;
+}
+
+.banner .nameOfcom a h3{
+	line-height: 60px;
+}
+
+.logo a{
+	line-height: 60px;
+}
+
+.logo img{
+	height: 50px;
+	width: 50px;
+}
+
+.nav-item .nav-link{
+	text-transform: uppercase;
+	font-size: 14px;
+}
+
+.nav-item .dropdown-item{
+	font-size: 14px;
+}
+
+.navbar ul li a:focus{
+	border-bottom: 1px solid red;
+}
+
+h3{
+	font-weight: normal;
+	text-transform: uppercase;
+}
+
+.xemThem button{
+	cursor: pointer;
+	border: 1px solid black;
+	background: #ffffff;
+}
+
+.right-about a img{
+	margin-left: 4px;
+}
+
+.right-about a span{
+	display: inline-block;
+	margin-top: 5px;
+}
+
+.nav-tabs{
+	border-bottom-width: 2px;
+}
+
+.show-item{
+	position: relative;
+}
+
+.name{
+	visibility: hidden;
+	position: absolute;
+	bottom: 5px;
+	width: 98%;
+	display: block;
+	background: #E52626;
+}
+
+.name a{
+	color: #FFFFFF;
+	text-transform: uppercase;
+}
+
+.show-item:hover .name{
+	visibility: visible;
+}
+
+.title::before{
+	height: 2px;
+	width: 200px;
+	background: #E46431;
+}
+
+.social-icon{
+	right: 20px;
+	bottom: 50px;
+	position: fixed;
+	border: 1px solid #f46164;
+	padding: 6px;
+	background-color: #f46164;
+}
+
+.social-icon ul li{
+	list-style: none;
+	margin-top: 15px;
+	text-align: center;
+}
+
+.social-icon ul li a{
+	color: white;
+	border: 1px solid;
+}
+
+.sanpham{
+	border: 1px solid #f46164;
+	background-color: #f46164;
+	padding: 7px;
+	color: white;
+}
+
+.line{
+	border: 1px solid #f46164;
+}
+
+.list ul{
+	margin-top: 10px;
+}
+
+.list ul li{
+	margin-bottom: 20px;
+	margin-left: 30px;
+	font-size: 12px;
+}
+
+.list ul li p{
+	display: inline;
+	margin-right: 5px;
+	border: 1px solid #f46164;
+	border-radius: 3px;
+	color: white;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left: 10px;
+	padding-right: 10px;
+	background-color: #f46164;
+}
+
+.btn button{
+	cursor: pointer;
+	padding:5px;
+	text-align: center;
+	background-color: #454545;
+	color: white;
+	font-size: 15px;
+	border-radius: 5px;
+}
+
+.btn button:hover{
+	background-color: #f46164;
+	border-color: #f46164;
+}
+
+.line{
+	border: 1px solid red;
+}
+
+footer{
+	padding: 0;
+}
+
+.ft-title{
+	margin-top: 20px;
+}
+
+.ft-title b{
+	color: #8f8f8f;
+}
+
+.ft-title ul{
+	margin-top:20px;
+}
+
+.ft-title ul li{
+}
+
+.ft-title ul li a{
+	color: #8f8f8f;
+	font-size: 12px;
+}

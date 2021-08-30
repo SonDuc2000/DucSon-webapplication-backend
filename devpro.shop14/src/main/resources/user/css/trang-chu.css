@@ -1,0 +1,140 @@
+body{
+	background: #EDEDED;
+}
+
+a{
+	text-decoration: none;
+	color: black;
+}
+
+li{
+	list-style: none;
+}
+
+.numberCard{
+	position: absolute;
+	top: 10%;
+	border: 2px solid #E9980C;
+	border-radius: 50%;
+	line-height: 14px;
+	right: 200px;
+	text-align: center;
+	padding: 1px;
+	background: #E9980C;
+}
+
+.banner .nameOfcom a h3{
+	line-height: 60px;
+}
+
+.logo a{
+	line-height: 60px;
+}
+
+.logo img{
+	height: 50px;
+	width: 50px;
+}
+
+.nav-item .nav-link{
+	text-transform: uppercase;
+	font-size: 14px;
+}
+
+.nav-item .dropdown-item{
+	font-size: 14px;
+}
+
+.navbar ul li a:focus{
+	border-bottom: 1px solid red;
+}
+
+h3{
+	font-weight: normal;
+	text-transform: uppercase;
+}
+
+.xemThem button{
+	cursor: pointer;
+	border: 1px solid black;
+	background: #ffffff;
+}
+
+.right-about a img{
+	margin-left: 4px;
+}
+
+.right-about a span{
+	display: inline-block;
+	margin-top: 5px;
+}
+
+.nav-tabs{
+	border-bottom-width: 2px;
+}
+
+.show-item{
+	position: relative;
+}
+
+.name{
+	visibility: hidden;
+	position: absolute;
+	bottom: 5px;
+	width: 98%;
+	display: block;
+	background: #E52626;
+}
+
+.name a{
+	color: #FFFFFF;
+	text-transform: uppercase;
+}
+
+.show-item:hover .name{
+	visibility: visible;
+}
+
+.title::before{
+	height: 2px;
+	width: 200px;
+	background: #E46431;
+}
+
+.box{
+	border: 1px solid #ABA9A9;
+}
+
+.box .desc{
+	line-height: 30px;
+	background: white;
+	width: 100%;
+}
+
+.line{
+	border: 1px solid red;
+}
+
+footer{
+	padding: 0;
+}
+
+.ft-title{
+	margin-top: 20px;
+}
+
+.ft-title b{
+	color: #8f8f8f;
+}
+
+.ft-title ul{
+	margin-top:20px;
+}
+
+.ft-title ul li{
+}
+
+.ft-title ul li a{
+	color: #8f8f8f;
+	font-size: 12px;
+}
