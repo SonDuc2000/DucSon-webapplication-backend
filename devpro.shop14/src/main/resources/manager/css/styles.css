@@ -207,15 +207,15 @@ sup {
 }
 
 a {
-  color: #0d6efd;
-  text-decoration: underline;
+  color: #030303;
+  text-decoration: none;
 }
 a:hover {
   color: #0a58ca;
 }
 
 a:not([href]):not([class]), a:not([href]):not([class]):hover {
-  color: inherit;
+  color: #101010;
   text-decoration: none;
 }
 
@@ -248,7 +248,7 @@ code {
   word-wrap: break-word;
 }
 a > code {
-  color: inherit;
+  color: #0B0B0B;
 }
 
 kbd {
@@ -3866,7 +3866,7 @@ textarea.form-control-lg {
 .nav-link {
   display: block;
   padding: 0.5rem 1rem;
-  color: #0d6efd;
+  color: #1B1B1C;
   text-decoration: none;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
 }
@@ -3876,10 +3876,10 @@ textarea.form-control-lg {
   }
 }
 .nav-link:hover, .nav-link:focus {
-  color: #0a58ca;
+  color: #0A58CA;
 }
 .nav-link.disabled {
-  color: #6c757d;
+  color: #535658;
   pointer-events: none;
   cursor: default;
 }
@@ -3899,7 +3899,7 @@ textarea.form-control-lg {
   isolation: isolate;
 }
 .nav-tabs .nav-link.disabled {
-  color: #6c757d;
+  color: #6C757D;
   background-color: transparent;
   border-color: transparent;
 }

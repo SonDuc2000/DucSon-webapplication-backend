@@ -1,6 +1,8 @@
 package devpro.shop14.Entity;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -24,7 +26,7 @@ public class Category extends BaseEntity {
 	private String seo;
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "categories")
-	private Set<products> product = new HashSet<products>();
+	private List<products> product = new ArrayList<products>();
 
 	public void addProduct(products products) {
 		product.add(products);
@@ -60,11 +62,11 @@ public class Category extends BaseEntity {
 		this.seo = seo;
 	}
 
-	public Set<products> getProduct() {
+	public List<products> getProduct() {
 		return product;
 	}
 
-	public void setProduct(Set<products> product) {
+	public void setProduct(List<products> product) {
 		this.product = product;
 	}
 

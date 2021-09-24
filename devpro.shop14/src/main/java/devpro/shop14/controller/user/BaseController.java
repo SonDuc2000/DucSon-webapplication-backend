@@ -1,5 +1,7 @@
 package devpro.shop14.controller.user;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -9,6 +11,14 @@ import devpro.shop14.Entity.User;
 
 @Controller
 public class BaseController {
+	
+	public int getCurrentPage(HttpServletRequest request) {
+		try {
+			return Integer.parseInt(request.getParameter("page"));
+		} catch (Exception e) {
+			return 0;
+		}
+	}
 	
 	@ModelAttribute("isLogined")
 	public boolean isLogined() {

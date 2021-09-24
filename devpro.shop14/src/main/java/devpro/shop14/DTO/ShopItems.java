@@ -10,6 +10,15 @@ public class ShopItems {
 	private String shortDesc;
 	private int quanlity;
 	private BigDecimal priceUnit;
+	private BigDecimal totalPriceUnit;
+
+	public BigDecimal getTotalPriceUnit() {
+		return totalPriceUnit;
+	}
+
+	public void setTotalPriceUnit(BigDecimal totalPriceUnit) {
+		this.totalPriceUnit = totalPriceUnit;
+	}
 
 	public int getProductId() {
 		return productId;

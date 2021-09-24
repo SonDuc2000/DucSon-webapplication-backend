@@ -1,6 +1,7 @@
 package devpro.shop14.controller.user;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -29,6 +30,10 @@ public class product extends BaseController{
 		products products = productService.getById(id);
 		
 		model.addAttribute("product", products);
+		
+		List<products> list = productService.findAll();
+		
+		model.addAttribute("products", list);
 		
 		return "user/san-pham";
 	}

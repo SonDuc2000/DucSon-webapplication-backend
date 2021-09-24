@@ -1,13 +1,17 @@
 package devpro.shop14.Entity;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -30,8 +34,12 @@ public class SaleOrder extends BaseEntity{
 	@Column(name = "total")
 	private BigDecimal total;
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "saleOrder", fetch = FetchType.EAGER)
-	private Set<saleOrderProduct> saleOrderProducts = new HashSet<saleOrderProduct>();
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "saleOrder", fetch = FetchType.LAZY)
+	private List<saleOrderProduct> saleOrderProducts = new ArrayList<saleOrderProduct>();
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="user_id")
+	private User user;
 
 	public void addSaleOrderProducts(saleOrderProduct _saleOrderProducts) {
 		_saleOrderProducts.setSaleOrder(this);
@@ -83,12 +91,21 @@ public class SaleOrder extends BaseEntity{
 		this.total = total;
 	}
 
-	public Set<saleOrderProduct> getSaleOrderProducts() {
+	public List<saleOrderProduct> getSaleOrderProducts() {
 		return saleOrderProducts;
 	}
 
-	public void setSaleOrderProducts(Set<saleOrderProduct> saleOrderProducts) {
+	public void setSaleOrderProducts(List<saleOrderProduct> saleOrderProducts) {
 		this.saleOrderProducts = saleOrderProducts;
 	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+	
 	
 }

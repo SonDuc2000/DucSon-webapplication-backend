@@ -55,6 +55,7 @@ public class ContactController extends BaseController{
 		contact2.setEmail(contact.getInputEmail());
 		contact2.setMessage(contact.getInputBody());
 		contact2.setRequestType(contact.getInputTitle());
+		contact2.setPhone(contact.getInputPhone());
 		contactService.saveOrUpdate(contact2);
 		// 200 <-> thanh cong
 		// 500 <-> khong thanh cong

@@ -21,7 +21,7 @@ public class Home extends BaseController{
 	@Autowired
 	ProductService productService;
 
-	@RequestMapping(value = { "/home" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/home", "/" }, method = RequestMethod.GET)
 	public String home(final ModelMap model, final HttpServletRequest request, final HttpServletResponse response)
 			throws IOException {
 		List<products> products = productService.findAll();

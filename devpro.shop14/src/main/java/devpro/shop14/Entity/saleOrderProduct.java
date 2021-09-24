@@ -1,5 +1,7 @@
 package devpro.shop14.Entity;
 
+import java.math.BigDecimal;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -21,6 +23,10 @@ public class saleOrderProduct extends BaseEntity{
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "saleorder_id")
 	private SaleOrder saleOrder;
+	
+	public BigDecimal setTotal(products product, Integer quality) {
+		return product.getPrice().multiply(new BigDecimal(quality));
+	}
 
 	public SaleOrder getSaleOrder() {
 		return saleOrder;

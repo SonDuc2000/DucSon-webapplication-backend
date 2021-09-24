@@ -39,7 +39,7 @@ public class CategoriesController extends BaseController{
 		
 		ProductSearch search = new ProductSearch();
 		String keyWord = request.getParameter("keysearch");
-		
+		search.setPage(getCurrentPage(request));
 		search.setKeyWord(keyWord);
 		List<products> products = productService.searchProduct(search);
 		model.addAttribute("product", products);

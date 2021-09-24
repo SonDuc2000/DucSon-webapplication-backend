@@ -22,6 +22,17 @@ public class Contact extends BaseEntity{
 	
 	@Column(name = "message", length = 45, nullable = false)
 	private String message;
+	
+	@Column(name = "phone_number", length = 45, nullable = false)
+	private String phone;
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
 
 	public String getFirstName() {
 		return firstName;

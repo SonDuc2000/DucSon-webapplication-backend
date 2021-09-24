@@ -16,7 +16,7 @@ public class UserService extends BaseService<User>{
 	}
 	
 	public User loadUserByUsername(String userName) {
-		String sql = "select * from tbl_users u where u.username = '" + userName + "'";
+		String sql = "select * from tbl_users u where u.username = '" + userName + "' and u.status = 1;";
 		List<User> users = executeNativeSql(sql);
 		if(users == null || users.size() <= 0) 
 			return null;

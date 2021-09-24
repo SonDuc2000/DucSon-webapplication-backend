@@ -18,11 +18,13 @@ import org.springframework.web.multipart.MultipartFile;
 
 import devpro.shop14.DTO.ProductSearch;
 import devpro.shop14.Entity.Category;
+import devpro.shop14.Entity.User;
 import devpro.shop14.Entity.products;
 import devpro.shop14.MVCConf.Constans;
 import devpro.shop14.controller.user.BaseController;
 import devpro.shop14.services.CategoryService;
 import devpro.shop14.services.ProductService;
+import devpro.shop14.services.UserService;
 
 @Controller
 public class PostController extends BaseController implements Constans{
@@ -32,6 +34,9 @@ public class PostController extends BaseController implements Constans{
 	
 	@Autowired
 	private CategoryService categoryService;
+	
+	@Autowired
+	private UserService userService;
 
 	@RequestMapping(value = { "/admin/new-post" }, method = RequestMethod.GET)
 	public String home(final ModelMap model, final HttpServletRequest request, final HttpServletResponse response)
@@ -84,6 +89,34 @@ public class PostController extends BaseController implements Constans{
 		model.addAttribute("categories", categories);
 		
 		model.addAttribute("new-post", products);
+		
+		return "manager/post";
+	}
+	
+	@RequestMapping(value = { "/admin/edit-category/{categoryId}" }, method = RequestMethod.GET)
+	public String editCategory(final ModelMap model, final HttpServletRequest request, final HttpServletResponse response,
+			@PathVariable("categoryId") int categoryId)
+			throws IOException {
+		
+		Category category = categoryService.getById(categoryId);
+		
+		List<Category> categories = categoryService.findAll();
+		
+		model.addAttribute("categories", categories);
+		
+		model.addAttribute("new-post", category);
+		
+		return "manager/post";
+	}
+	
+	@RequestMapping(value = { "/admin/edit-user/{userId}" }, method = RequestMethod.GET)
+	public String editUser(final ModelMap model, final HttpServletRequest request, final HttpServletResponse response,
+			@PathVariable("userId") int userId)
+			throws IOException {
+		
+		User user = userService.getById(userId);
+		
+		model.addAttribute("new-post", user);
 		
 		return "manager/post";
 	}

@@ -15,6 +15,8 @@ import devpro.shop14.Entity.BaseEntity;
 
 @Service
 public abstract class BaseService<E extends BaseEntity> {
+	
+	private static int SIZE_OF_PAGE = 10;
 
 	@PersistenceContext
 	EntityManager entityManager;
@@ -28,7 +30,13 @@ public abstract class BaseService<E extends BaseEntity> {
 	@SuppressWarnings("unchecked")
 	public List<E> findAll() {
 		Table tbl = clazz().getAnnotation(Table.class);
-		return (List<E>) entityManager.createNativeQuery("SELECT * FROM " + tbl.name(), clazz()).getResultList();
+		return (List<E>) entityManager.createNativeQuery("SELECT * FROM " + tbl.name() + " WHERE status = 1", clazz()).getResultList();
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<E> findAllRemove() {
+		Table tbl = clazz().getAnnotation(Table.class);
+		return (List<E>) entityManager.createNativeQuery("SELECT * FROM " + tbl.name() + " WHERE status = 0", clazz()).getResultList();
 	}
 
 	@Transactional
@@ -54,6 +62,7 @@ public abstract class BaseService<E extends BaseEntity> {
 	public List<E> executeNativeSql(String sql) {
 		try {
 			Query query = entityManager.createNativeQuery(sql, clazz());
+			
 			return query.getResultList();
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -4,7 +4,8 @@ public class ProductSearch {
 
 	private String title;
 	private String categories;
-	public String keyWord;
+	private String keyWord;
+	private int page;
 	
 	public String getTitle() {
 		return title;
@@ -24,5 +25,12 @@ public class ProductSearch {
 	public void setKeyWord(String keyWord) {
 		this.keyWord = keyWord;
 	}
+	public int getPage() {
+		return page;
+	}
+	public void setPage(int page) {
+		this.page = page;
+	}
 
+	
 }

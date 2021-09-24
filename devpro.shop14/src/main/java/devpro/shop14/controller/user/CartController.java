@@ -1,6 +1,7 @@
 package devpro.shop14.controller.user;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,12 +22,14 @@ import devpro.shop14.DTO.OrderDTO;
 import devpro.shop14.DTO.Shop;
 import devpro.shop14.DTO.ShopItems;
 import devpro.shop14.Entity.SaleOrder;
+import devpro.shop14.Entity.User;
 import devpro.shop14.Entity.products;
 import devpro.shop14.Entity.saleOrderProduct;
 import devpro.shop14.services.CategoryService;
 import devpro.shop14.services.ProductService;
 import devpro.shop14.services.SaleOrderProductService;
 import devpro.shop14.services.SaleOrderService;
+import devpro.shop14.services.UserService;
 
 @Controller
 public class CartController extends BaseController{
@@ -39,17 +42,21 @@ public class CartController extends BaseController{
 
 	@Autowired
 	SaleOrderProductService saleOrderProductService;
+	
+	@Autowired
+	UserService userService;
 
 	@Autowired
 	CategoryService categoryService;
 
-	@RequestMapping(value = { "/view/card" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/cart/view" }, method = RequestMethod.GET)
 	public String viewCard(final ModelMap model, final HttpServletRequest request, final HttpServletResponse response)
 			throws IOException {
+		
 		return "user/card";
 	}
 
-	@RequestMapping(value = { "/view/access" }, method = RequestMethod.POST)
+	@RequestMapping(value = { "/cart/view/access" }, method = RequestMethod.POST)
 	public String buyCard(final ModelMap model, final HttpServletRequest request, final HttpServletResponse response)
 			throws IOException {
 
@@ -65,9 +72,6 @@ public class CartController extends BaseController{
 		// Tao hoa don
 		SaleOrder saleOrder = new SaleOrder();
 		saleOrder.setCode(String.valueOf(System.currentTimeMillis()));
-		saleOrder.setCustomerName(customerName);
-		saleOrder.setCustomerEmail(customerEmail);
-		saleOrder.setCustomerAddr(customerAddr);
 
 		HttpSession session = request.getSession();
 
@@ -78,15 +82,25 @@ public class CartController extends BaseController{
 			orderProduct.setQuality(items.getQuanlity());
 			saleOrder.addSaleOrderProducts(orderProduct);
 		}
-		model.addAttribute("order", orderDTO);
 		
+		User user = getUserLogined();
+		
+		saleOrder.setCustomerName(customerName);
+		saleOrder.setCustomerEmail(customerEmail);
+		saleOrder.setCustomerAddr(customerAddr);
+		saleOrder.setTotal(getTotal(shop.getCartItems()));
+		
+		saleOrder.setUser(user);
+		
+		model.addAttribute("order", orderDTO);
+	
 		orderService.saveOrUpdate(saleOrder);
 		
 		model.addAttribute("saleOrder", shop.getCartItems());
 
 		session.setAttribute("cart", null);
-
-		return "user/card";
+		session.setAttribute("totalItems", 0);
+		return "redirect:/home";
 	}
 
 	@RequestMapping(value = { "/cart/add" }, method = RequestMethod.POST)
@@ -125,7 +139,7 @@ public class CartController extends BaseController{
 			newItem.setAvatar(productInDb.getAvatar());
 			newItem.setShortDesc(productInDb.getDetails());
 			newItem.setPriceUnit(productInDb.getPrice());
-
+			newItem.setTotalPriceUnit(newItem.getPriceUnit().multiply(new BigDecimal(newItem.getQuanlity())));
 			cart.getCartItems().add(newItem);
 		}
 
@@ -136,6 +150,7 @@ public class CartController extends BaseController{
 		jsonResult.put("totalItems", getTotalItems(request));
 
 		session.setAttribute("totalItems", getTotalItems(request));
+		
 		return ResponseEntity.ok(jsonResult);
 	}
 
@@ -156,12 +171,27 @@ public class CartController extends BaseController{
 
 		return total;
 	}
+	
+	private BigDecimal getTotal(List<ShopItems> items) {
+		
+		BigDecimal sum = BigDecimal.ZERO;
+		
+		for (ShopItems shopItems : items) {
+			sum = sum.add(shopItems.getPriceUnit().multiply(new BigDecimal(shopItems.getQuanlity())));
+		}
+		
+		return sum;
+	}
 
-	@RequestMapping(value = { "/cart/check_bill" })
+	@RequestMapping(value = { "/cart/check-bill" })
 	private String checkCart(final ModelMap model, final HttpServletRequest request, final HttpServletResponse response)
 			throws IOException {
+		
+		List<SaleOrder> orders = orderService.findAll();
+		
+		model.addAttribute("bill", orders);
 
-		return "user/card";
+		return "user/checkcart";
 	}
 
 }

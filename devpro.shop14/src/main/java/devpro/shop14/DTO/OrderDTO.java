@@ -1,12 +1,16 @@
 package devpro.shop14.DTO;
 
-public class OrderDTO {
+import java.math.BigDecimal;
+
+public class OrderDTO{
 	
 	private String customerName;
 	
 	private String customerEmail;
 	
 	private String customerAddr;
+	
+	private BigDecimal total;
 
 	public String getCustomerName() {
 		return customerName;
@@ -30,6 +34,14 @@ public class OrderDTO {
 
 	public void setCustomerAddr(String customerAddr) {
 		this.customerAddr = customerAddr;
+	}
+
+	public BigDecimal getTotal() {
+		return total;
+	}
+
+	public void setTotal(BigDecimal total) {
+		this.total = total;
 	}
 	
 }

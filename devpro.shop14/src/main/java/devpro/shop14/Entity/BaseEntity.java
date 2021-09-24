@@ -3,12 +3,20 @@ package devpro.shop14.Entity;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 @MappedSuperclass // day ko phai la entity
+@EntityListeners(AuditingEntityListener.class)
 public abstract class BaseEntity {
 	
 	@Id
@@ -20,15 +28,19 @@ public abstract class BaseEntity {
 	private Boolean status = Boolean.TRUE;
 	
 	@Column(name = "created_by", nullable = true)
+	@CreatedBy
 	private Integer createdBy;
 	
 	@Column(name = "updated_by", nullable = true)
+	@LastModifiedBy
 	private Integer updatedBy;
 	
 	@Column(name = "created_date", nullable = true)
+	@CreatedDate
 	private Date createdDate;
 	
 	@Column(name = "updated_date", nullable = true)
+	@LastModifiedDate
 	private Date updatedDate;
 
 	public Integer getId() {

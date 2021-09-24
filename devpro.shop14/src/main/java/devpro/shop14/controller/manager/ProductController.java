@@ -34,8 +34,45 @@ public class ProductController extends BaseController{
 		return "manager/product";
 	}
 	
-	@RequestMapping(value = { "/admin/manager-product/{id}" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/admin/manager-product/remove/{id}" }, method = RequestMethod.GET)
 	public String deleteProduct(final ModelMap model, final HttpServletRequest request, final HttpServletResponse response,
+								@PathVariable(name="id") Integer id)
+			throws IOException {
+		
+		products products = productService.getById(id);
+		
+		products.setStatus(false);
+		productService.saveOrUpdate(products);
+		
+		return "redirect:/admin/manager-product/product-remove";
+	}
+	
+	@RequestMapping(value = { "/admin/manager-product/product-remove" }, method = RequestMethod.GET)
+	public String RemoveProduct(final ModelMap model, final HttpServletRequest request, final HttpServletResponse response)
+			throws IOException {
+		
+		List<products> products = productService.findAllRemove();
+		
+		model.addAttribute("product", products);
+		
+		return "manager/product";
+	}
+	
+	@RequestMapping(value = { "/admin/manager-product/reset/{id}" }, method = RequestMethod.GET)
+	public String resetProduct(final ModelMap model, final HttpServletRequest request, final HttpServletResponse response,
+								@PathVariable(name="id") Integer id)
+			throws IOException {
+		
+		products products = productService.getById(id);
+		
+		products.setStatus(true);
+		productService.saveOrUpdate(products);
+		
+		return "redirect:/admin/manager-product";
+	}
+	
+	@RequestMapping(value = { "/admin/manager-product/delete/{id}" }, method = RequestMethod.GET)
+	public String dropProduct(final ModelMap model, final HttpServletRequest request, final HttpServletResponse response,
 								@PathVariable(name="id") Integer id)
 			throws IOException {
 		
